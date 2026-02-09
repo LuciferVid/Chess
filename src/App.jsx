@@ -27,5 +27,38 @@ const ResetPassword = () => (
 );
 
 const App = () => {
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const videoRef = useRef(null);
 
+  useEffect(() => {
+    // Force video to load
+    if (videoRef.current) {
+      videoRef.current.load();
+    }
+  }, []);
+
+  return (
+    <AuthProvider>
+      <div className="App">
+        <video 
+          ref={videoRef}
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+          className={`global-bg-video ${videoLoaded ? 'loaded' : ''}`}
+          onLoadedData={() => setVideoLoaded(true)}
+          preload="auto"
+        >
+          <source src={bgVideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        
+        <div className={`global-overlay ${videoLoaded ? 'video-loaded' : ''}`}>
+          <Navbar />
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/practice" element={<Practice />} />
+              <Route path="/learn" 
 // WIP
