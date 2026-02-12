@@ -60,5 +60,39 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/practice" element={<Practice />} />
-              <Route path="/learn" 
-// WIP
+              <Route path="/learn" element={<Learn />} />
+              <Route path="/king" element={<King />} />
+              <Route path="/queen" element={<Queen />} />
+              <Route path="/bishop" element={<Bishop />} />
+              <Route path="/knight" element={<Knight />} />
+              <Route path="/rook" element={<Rook />} />
+              <Route path="/pawn" element={<Pawn />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
+              <Route 
+                path="/profile" 
+                element={
+                  <PrivateRoute>
+                    <Profile />
+                  </PrivateRoute>
+                }
+              />
+            </Routes>
+          </main>
+        </div>
+      </div>
+    </AuthProvider>
+  );
+};
+
+export default App;
+
+
+// lazy load imports for sub-pages
+
+
+// dynamic preload strategy
+
+
+// AnimatePresence integration
