@@ -24,5 +24,32 @@ const FAMOUS_GAMES = [
     players: 'Adolf Anderssen vs Lionel Kieseritzky',
     year: '1851',
     description: 'Famous for its bold sacrifices and brilliant finish, this game epitomizes the attacking style of the Romantic era.',
-    pgn: '1. e4 e5 2. f4 exf4 3. Bc4 Qh4+ 4. Kf1 b5 5. Bxb5 Nf6 6. Nf3 Qh6 7. d3 Nh5 8. Nh4 Qg5 9. Nf5 c6 10. g4 Nf6 11. Rg1 cxb5 12. h4 Qg6 13. h5 Qg5 14. Qf3 Ng8 15. Bxf4 Qf6 16. Nc3 Bc5
+    pgn: '1. e4 e5 2. f4 exf4 3. Bc4 Qh4+ 4. Kf1 b5 5. Bxb5 Nf6 6. Nf3 Qh6 7. d3 Nh5 8. Nh4 Qg5 9. Nf5 c6 10. g4 Nf6 11. Rg1 cxb5 12. h4 Qg6 13. h5 Qg5 14. Qf3 Ng8 15. Bxf4 Qf6 16. Nc3 Bc5 17. Nd5 Qxb2 18. Bd6 Bxg1 19. e5 Qxa1+ 20. Ke2 Na6 21. Nxg7+ Kd8 22. Qf6+ Nxf6 23. Be7#',
+    key_positions: [12, 18, 22],
+    key_insights: [
+      'Anderssen sacrifices material for rapid development and attacking chances',
+      'The Queen and Rook sacrifices demonstrate incredible tactical vision',
+      'The final Bishop mate shows the importance of piece coordination'
+    ]
+  },
+  {
+    id: 'evergreen',
+    title: 'The Evergreen Game',
+    players: 'Adolf Anderssen vs Jean Dufresne',
+    year: '1852',
+    description: 'Named "The Evergreen" for its timeless beauty, this game features sacrifices and a stunning final position.',
+    pgn: '1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4 5. c3 Ba5 6. d4 exd4 7. O-O d3 8. Qb3 Qf6 9. e5 Qg6 10. Re1 Nge7 11. Ba3 b5 12. Qxb5 Rb8 13. Qa4 Bb6 14. Nbd2 Bb7 15. Ne4 Qf5 16. Bxd3 Qh5 17. Nf6+ gxf6 18. exf6 Rg8 19. Rad1 Qxf3 20. Rxe7+ Nxe7 21. Qxd7+ Kxd7 22. Bf5+ Ke8 23. Bd7+ Kf8 24. Bxe7#',
+    key_positions: [10, 17, 23],
+    key_insights: [
+      'Anderssen sacrifices a bishop to create a powerful attack',
+      'The knight sacrifice on f6 opens up the king position',
+      'The final checkmate pattern with the bishop pair is extraordinary'
+    ]
+  }
+];
+
+const GameAnalysis = () => {
+  const [selectedGame, setSelectedGame] = useState(FAMOUS_GAMES[0]);
+  const [game, setGame] = useState(new Chess());
+  const [currentMoveIndex, setCurren
 // WIP
