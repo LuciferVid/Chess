@@ -1,0 +1,49 @@
+.interactive-learning {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: var(--text-primary);
+  position: relative;
+  animation: fadeIn 0.8s ease;
+}
+
+.component-header {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.back-button {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0.5rem 1rem;
+  background: var(--card-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.back-button:hover {
+  background: var(--accent-primary);
+  color: white;
+  transform: translateX(-5px);
+}
+
+.back-icon {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.interactive-learning h1 {
+  font-size: 2.5rem;
+  color: var(--accent-primary);
+  margin-bottom: 0.5rem;
+  text-align: center;
+  
+// WIP
