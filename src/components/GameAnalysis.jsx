@@ -51,5 +51,51 @@ const FAMOUS_GAMES = [
 const GameAnalysis = () => {
   const [selectedGame, setSelectedGame] = useState(FAMOUS_GAMES[0]);
   const [game, setGame] = useState(new Chess());
-  const [currentMoveIndex, setCurren
+  const [currentMoveIndex, setCurrentMoveIndex] = useState(0);
+  const [moveHistory, setMoveHistory] = useState([]);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [boardWidth, setBoardWidth] = useState(500);
+  const [userMode, setUserMode] = useState(false);
+  const [userGame, setUserGame] = useState(null);
+  const [feedback, setFeedback] = useState('');
+  const [lastCorrectMove, setLastCorrectMove] = useState(null);
+
+  useEffect(() => {
+    // Responsive board sizing
+    const handleResize = () => {
+      const width = Math.min(
+        window.innerWidth < 768 ? window.innerWidth - 40 : window.innerWidth * 0.5,
+        600
+      );
+      setBoardWidth(width);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    loadGame(selectedGame);
+  }, [selectedGame]);
+
+  const loadGame = (gameData) => {
+    const newGame = new Chess();
+    const moves = gameData.pgn.split(' ').filter(move => !move.includes('.'));
+    setMoveHistory(moves);
+    setCurrentMoveIndex(0);
+    setGame(newGame);
+    setUserMode(false);
+    setFeedback('');
+    setLastCorrectMove(null);
+    
+    // Initialize user game
+    const userGameInstance = new Chess();
+    setUserGame(userGameInstance);
+  };
+
+  const makeMove = (moveIndex) => {
+    const newGame = new Chess();
+    const moves = mov
 // WIP
