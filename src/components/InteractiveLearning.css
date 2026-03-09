@@ -88,5 +88,51 @@
   background: var(--gradient-accent);
   opacity: 0;
   transform: translateY(100%);
-  transition: transform 0.4s ease, 
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  z-index: -1;
+}
+
+.lesson-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  color: white;
+}
+
+.lesson-button:hover::before {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lesson-button.active {
+  background: var(--accent-primary);
+  color: white;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 15px rgba(230, 57, 70, 0.3);
+}
+
+.learning-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+.board-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chessboard-container {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease;
+  background: #eeeed2;
+  border: 3px solid #5e3636;
+}
+
+.board-control
 // WIP
