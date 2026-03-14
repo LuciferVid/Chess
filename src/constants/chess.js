@@ -1,4 +1,3 @@
 
 
-export const BOARD_C
-// WIP
+export const BOARD_COLORS = {};
