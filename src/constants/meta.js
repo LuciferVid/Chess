@@ -1,4 +1,4 @@
 
 
-export const CHES
+export const CHESS_Q
 // WIP
