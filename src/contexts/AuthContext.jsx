@@ -67,5 +67,79 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Sign in with Google
-  const signInWithGoogle =
+  const signInWithGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+      
+      // Check if it's a new user
+      const userDoc = await getDoc(doc(db, 'users', result.user.uid));
+      
+      if (!userDoc.exists()) {
+        // New user, create profile
+        await setDoc(doc(db, 'users', result.user.uid), {
+          uid: result.user.uid,
+          email: result.user.email,
+          username: result.user.displayName || `User${Math.floor(Math.random() * 10000)}`,
+          displayName: result.user.displayName || `User${Math.floor(Math.random() * 10000)}`,
+          createdAt: serverTimestamp(),
+          gamesPlayed: 0,
+          wins: 0,
+          losses: 0,
+          draws: 0,
+          rating: 1200,
+          recentGames: []
+        });
+      }
+      
+      return result.user;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  // Sign out function
+  const signOut = async () => {
+    try {
+      setUserProfile(null);
+      await authSignOut(auth);
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  // Reset password function
+  const resetPassword = async (email) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  // Fetch user profile data from Firestore
+  const fetchUserProfile = async (uid) => {
+    try {
+      const userDoc = await getDoc(doc(db, 'users', uid));
+      if (userDoc.exists()) {
+        setUserProfile(userDoc.data());
+        return userDoc.data();
+      }
+      return null;
+    } catch (error) {
+      console.error("Error fetching user profile:", error);
+      return null;
+    }
+  };
+
+  // Update user stats after a game
+  const updateUserStats = async (gameResult) => {
+    if (!currentUser) return;
+    
+    try {
+      const userDocRef = doc(db, 'users', currentUser.uid);
+      const userDoc = await getDoc(userDocRef);
+      
+      if (userDoc.exists()) {
+        const userData = 
 // WIP
