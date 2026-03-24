@@ -141,5 +141,80 @@ export const AuthProvider = ({ children }) => {
       const userDoc = await getDoc(userDocRef);
       
       if (userDoc.exists()) {
-        const userData = 
-// WIP
+        const userData = userDoc.data();
+        const updatedStats = {
+          gamesPlayed: userData.gamesPlayed + 1,
+          wins: gameResult === 'win' ? userData.wins + 1 : userData.wins,
+          losses: gameResult === 'loss' ? userData.losses + 1 : userData.losses,
+          draws: gameResult === 'draw' ? userData.draws + 1 : userData.draws,
+        };
+        
+        // Calculate new rating
+        let ratingChange = 0;
+        if (gameResult === 'win') ratingChange = 15;
+        else if (gameResult === 'loss') ratingChange = -15;
+        else if (gameResult === 'draw') ratingChange = 5;
+        
+        const newRating = userData.rating + ratingChange;
+        
+        // Update user document
+        await setDoc(userDocRef, {
+          ...userData,
+          ...updatedStats,
+          rating: newRating,
+          recentGames: [
+            {
+              result: gameResult,
+              date: serverTimestamp(),
+              ratingChange: ratingChange
+            },
+            ...userData.recentGames.slice(0, 9) // Keep only the most recent 10 games
+          ]
+        });
+        
+        // Update local state
+        await fetchUserProfile(currentUser.uid);
+      }
+    } catch (error) {
+      console.error("Error updating user stats:", error);
+    }
+  };
+
+  // Listen for authentication state changes
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      setCurrentUser(user);
+      if (user) {
+        await fetchUserProfile(user.uid);
+      } else {
+        setUserProfile(null);
+      }
+      setLoading(false);
+    });
+
+    return unsubscribe;
+  }, []);
+
+  const value = {
+    currentUser,
+    userProfile,
+    loading,
+    signup,
+    login,
+    signInWithGoogle,
+    signOut,
+    resetPassword,
+    fetchUserProfile,
+    updateUserStats
+  };
+
+  return (
+    <AuthContext.Provider value={value}>
+      {!loading && children}
+    </AuthContext.Provider>
+  );
+};
+
+export default AuthContext; 
+
+// memoized auth state
