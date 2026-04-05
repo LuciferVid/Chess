@@ -1,4 +1,4 @@
 
 
-export co
+export const Hero = 
 // WIP
