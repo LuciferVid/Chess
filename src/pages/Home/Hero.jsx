@@ -1,4 +1,3 @@
 
 
-export const Hero = 
-// WIP
+export const Hero = () => null;
