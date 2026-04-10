@@ -1,4 +1,4 @@
 
 
-export cons
+export const PieceCards 
 // WIP
