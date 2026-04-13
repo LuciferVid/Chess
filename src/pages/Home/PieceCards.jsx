@@ -1,4 +1,3 @@
 
 
-export const PieceCards 
-// WIP
+export const PieceCards = () => null;
