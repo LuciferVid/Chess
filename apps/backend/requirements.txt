@@ -1,0 +1,17 @@
+fastapi==0.110.0
+uvicorn[standard]==0.27.1
+sqlalchemy==2.0.27
+alembic==1.13.1
+# psycopg2-binary==2.9.9 (Not needed for SQLite)
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.9
+chess==1.10.0
+redis==5.0.1
+python-socketio==5.11.1
+groq==0.4.2
+openai==1.13.3
+chromadb==0.4.24
+assemblyai==0.23.1
+python-dotenv==1.0.1
+pydantic-settings==2.2.1

@@ -1,0 +1,199 @@
+/* App.css */
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.App {
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Global background video */
+.global-bg-video {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  filter: brightness(1) contrast(1.05);
+  transition: opacity 1.5s ease;
+  opacity: 0;
+}
+
+.global-bg-video.loaded {
+  opacity: 1;
+}
+
+.global-overlay {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.05) 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  backdrop-filter: blur(0px);
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding-top: 80px; /* Space for the fixed navbar */
+  width: 100%;
+}
+
+/* Placeholder page styling */
+.placeholder-page {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(3px);
+}
+
+.placeholder-page h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  background: linear-gradient(to right, var(--text-primary), var(--accent-primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.placeholder-page p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  color: var(--text-primary);
+}
+
+.header {
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 1;
+}
+
+.chessboard-container {
+  margin: 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.pieces-section {
+  margin-top: 50px;
+  position: relative;
+  z-index: 1;
+}
+
+.piece-page {
+  padding: 50px;
+  position: relative;
+  z-index: 1;
+  background: rgba(28, 41, 66, 0.4);
+  border-radius: 15px;
+  margin: 20px;
+  box-shadow: var(--shadow-strong);
+  border: 1px solid var(--border-light);
+  backdrop-filter: blur(5px);
+}
+
+/* Loading animation */
+.loading-spinner {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(230, 57, 70, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--accent-primary);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Custom scrollbar for piece containers */
+.piece-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.piece-container::-webkit-scrollbar-track {
+  background: rgba(28, 41, 66, 0.2);
+  border-radius: 10px;
+}
+
+.piece-container::-webkit-scrollbar-thumb {
+  background: var(--accent-primary-soft);
+  border-radius: 10px;
+}
+
+/* Elegant button styles */
+.action-button {
+  padding: 10px 20px;
+  background: var(--gradient-dark);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.action-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-accent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.action-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border-color: var(--accent-primary);
+}
+
+.action-button:hover::before {
+  opacity: 1;
+}
+
+
+/* Custom Cursor Styles */
+
+
+// higher contrast ratio text
+
+
+/* Focus Ring Styles */
